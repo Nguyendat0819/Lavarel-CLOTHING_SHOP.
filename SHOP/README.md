@@ -1,61 +1,111 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Hệ Thống Shop Bán Quần Áo
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Được Phát Triển Bởi:
+**ĐỖ PHƯƠNG NAM VÀ NGUYỄN ĐÌNH ĐẠT**
 
-## About Laravel
+## Mô Tả Ứng Dụng
+Ứng dụng web shop bán quần áo cho phép người dùng xem sản phẩm, thêm vào giỏ hàng, đặt mua, quản trị viên có thể quản lý người dùng, sản phẩm, danh mục và đơn hàng một cách hiệu quả.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Mục Đích
+- Quản lý thông tin người dùng
+- Quản lý thông tin sản phẩm (quần áo)
+- Quản lý danh mục sản phẩm
+- Quản lý đơn hàng và giỏ 
+- Giao diện thân thiện với người dùng
+- Hiển thị dữ liệu hiệu quả thông qua DataTables
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Công Nghệ
+Dự án sử dụng các công nghệ sau:
+- **Laravel Framework** (cập nhật lên phiên bản mới nhất)
+- **PHP 8.x**
+- **MySQL - Aiven**
+- **DataTables với jQuery**
+- **AdminLTE 3.x** (giao diện admin)
+- **HTML, CSS, JavaScript**
+- **Laravel Repository Pattern**
+- **Laravel Service Pattern**
+- **Laravel Events & Listeners**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Quá Trình Phát Triển Phần Mềm
+### Sơ Đồ Khối (UML) - Cấu trúc Database
+![z6663142104358_209410169ab6c3247196658c569384d8](https://github.com/user-attachments/assets/39c12bcf-ffe1-4ea1-8c92-8d540ca3ecb9)
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Sơ Đồ Chức Năng (Sơ Đồ Thuật Toán)
+```mermaid
+graph TD;
+    A[Người dùng truy cập hệ thống] --> B[Chọn hành động];
+    B --> C{Loại người dùng};
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    C --> D[Khách: Xem sản phẩm];
+    C --> E[Khách: Thêm sản phẩm vào giỏ hàng];
+    C --> F[Khách: Đăng ký / Đăng nhập];
+    F --> G[Khách: Đặt hàng];
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    C --> H[Admin: Quản lý sản phẩm];
+    H --> H1[Thêm / Sửa / Xóa sản phẩm];
+    H --> H2[Tìm kiếm sản phẩm];
+    
+    C --> I[Admin: Quản lý danh mục];
+    I --> I1[Thêm / Sửa / Xóa danh mục];
 
-## Laravel Sponsors
+    C --> J[Admin: Quản lý người dùng];
+    C --> K[Admin: Quản lý đơn hàng];
+    K --> K1[Xem đơn hàng];
+    K --> K2[Cập nhật trạng thái đơn hàng];
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```
 
-### Premium Partners
+## Chu Trình Phát Triển
+### Các Giai Đoạn:
+1. **Analysis**: Phân tích yêu cầu và thiết kế database
+2. **Design**: Áp dụng các design patterns (Repository, Service)
+3. **Implementation**: Viết code theo các patterns đã thiết kế
+4. **Testing**: Unit tests, Feature tests
+5. **Deployment**: CI/CD pipeline
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Deployment
+### Cài đặt môi trường
+```sh
+composer create-project laravel/laravel shop
+cd shopshop
+```
 
-## Contributing
+### Tạo database
+```sql
+CREATE DATABASE defaultdb;
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Cấu hình `.env`
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=form
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-## Code of Conduct
+### Cài đặt dependencies
+```sh
+composer require jeroennoten/laravel-adminlte
+composer require laravel/ui
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Chạy migrations
+```sh
+php artisan key:generate
+php artisan migrate
+php artisan db:seed
+```
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Deploy lên server
+```sh
+php artisan serve
+```
+## Lưu ý về cải tiến cấu trúc
+- **Áp dụng Repository Pattern** giúp tách biệt logic truy cập dữ liệu từ controllers.
+- **Service Layer** chứa business logic, giúp code dễ test và bảo trì.
+- **Request Validation** giúp tách biệt logic validation.
+- **API Resources** chuẩn hóa dữ liệu trả về.
+- **Events & Listeners** xử lý các tác vụ phụ không đồng bộ.

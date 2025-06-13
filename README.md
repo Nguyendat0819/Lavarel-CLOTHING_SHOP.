@@ -68,12 +68,12 @@ graph TD;
 ### Cài đặt môi trường
 ```sh
 composer create-project laravel/laravel shop
-cd shopshop
+cd shop
 ```
 
 ### Tạo database
 ```sql
-CREATE DATABASE defaultdb;
+CREATE DATABASE form;
 ```
 
 ### Cấu hình `.env`

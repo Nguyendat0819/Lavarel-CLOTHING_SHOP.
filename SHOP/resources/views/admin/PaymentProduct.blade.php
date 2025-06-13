@@ -22,7 +22,7 @@
                         <td>{{ $order->orderDate }}</td>
                         <td>{{ $order->customerName }}</td>
                         <td>{{ $order->email }}</td>
-                        <td>{{ number_format((float)$order->totalAmount, 0, ',', '.') }} VNĐ</td>
+                        <td>{{ number_format($order->totalAmount * 1000, 0, ',', '.') }} VNĐ</td>
                         <td>{{ $order->status }}</td>
                     <td>
                         @if($order->status !== 'Hoàn tất')

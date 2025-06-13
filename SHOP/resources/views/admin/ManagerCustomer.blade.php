@@ -11,7 +11,6 @@
                     <th>Tên khách hàng</th>
                     <th>Email</th>
                     <th>SĐT</th>
-                    <th>Tài khoản</th>
                     <th>Mật khẩu</th>
                     <th>Giới tính</th>
                     <th>Ngày sinh</th>
@@ -26,7 +25,6 @@
                     <td>{{ $customer->customerName }}</td>
                     <td>{{ $customer->email }}</td>
                     <td>{{ $customer->address->phone ?? '' }}</td>
-                    <td>{{ $customer->userName }}</td>
                     <td>{{ $customer->password }}</td>
                     <td>{{ $customer->gender }}</td>
                     <td>{{ $customer->date }}</td>

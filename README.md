@@ -28,7 +28,8 @@ Dự án sử dụng các công nghệ sau:
 
 ## Quá Trình Phát Triển Phần Mềm
 ### Sơ Đồ Khối (UML) - Cấu trúc Database
-![z6663142104358_209410169ab6c3247196658c569384d8](https://github.com/user-attachments/assets/39c12bcf-ffe1-4ea1-8c92-8d540ca3ecb9)
+![image](https://github.com/user-attachments/assets/7eef9444-0459-408c-8b51-095147ee9a3b)
+
 
 
 ### Sơ Đồ Chức Năng (Sơ Đồ Thuật Toán)

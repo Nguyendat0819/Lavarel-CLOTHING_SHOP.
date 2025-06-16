@@ -45,7 +45,7 @@ graph TD;
 
     C --> H[Admin: Quản lý sản phẩm];
     H --> H1[Thêm / Sửa / Xóa sản phẩm];
-    H --> H2[Tìm kiếm sản phẩm];
+   
     
     C --> I[Admin: Quản lý danh mục];
     I --> I1[Thêm / Sửa / Xóa danh mục];

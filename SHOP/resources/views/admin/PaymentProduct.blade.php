@@ -26,24 +26,13 @@
                         <td>{{ $order->status }}</td>
                     <td>
                         @if($order->status !== 'Hoàn tất')
-                            <button type="button"
-                                onclick="markDone(this)"
-                                style="background: #f0ad4e; color: #fff; border: none; padding: 5px 10px; cursor: pointer;">
-                                Hoàn tất
-                            </button>
+                            <form method="POST" action="{{ route('PaymentProduct.update', ['orderNumber' => $order->orderNumber]) }}">
+                                @csrf
+                                <button type="submit">Hoàn tất</button>
+                            </form>
                         @else
                             Đã hoàn tất
-                        @endif
-                        <script>
-                            function markDone(btn) {
-                                // Đổi màu dòng
-                                btn.closest('tr').style.backgroundColor = '#b6fcb6';
-                                // Đổi text trạng thái
-                                btn.closest('tr').querySelectorAll('td')[5].innerText = 'Hoàn tất';
-                                // Đổi nút thành "Đã hoàn tất"
-                                btn.parentNode.innerHTML = 'Đã hoàn tất';
-                            }
-                        </script>
+                        @endif  
 
                     </td>
                 </tr>

@@ -75,3 +75,28 @@ a{
     height: 50px;
     
 }
+
+/* viết cho admin */
+.admin_statistics_contain{
+    display: flex;
+    justify-content: space-between;
+}
+.admin_statistics_item{
+    list-style: none;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 10px;
+}
+.item_customer{
+    background-color: #72BEF1;
+    border-color: #72BEF1;
+}
+
+.item_total{
+    background-color: #81D3D3;
+    border-color: #81D3D3;
+}
+.item_sold{
+    background-color: #FFDD88;
+    border-color: #FFDD88;
+}

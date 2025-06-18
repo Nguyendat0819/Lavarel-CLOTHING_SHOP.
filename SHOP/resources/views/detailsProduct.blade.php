@@ -27,20 +27,22 @@
 							<path d="M10 0v2H0V0z"></path>
 						</svg>
                     </button>
-                    <input type="text" value="1" style="width: 40px; text-align: center;" class="qty_val">
+                    <input type="text" value="0" style="width: 40px; text-align: center;" class="qty_val">
                     <button class="button_detail button_detail_right">
                         <svg focusable="false" class="icon icon--plus " viewBox="0 0 10 10" role="presentation">
 							<path d="M6 4h4v2H6v4H4V6H0V4h4V0h2v4z"></path>
 						</svg>
                     </button>
                 </div>
-                <div class="quality_now">
-                    <div class="quality_now_inner">
-                            <span style="font-size:18px">
-                                {{ $product->qualityStock ?? 'Không có thông tin tồn kho' }}
-                            </span>
+               @if($product->qualityStock === 0)
+                    <div class="quality_now" style="background-color: red">
+                        <div class="quality_now_inner">
+                                <span>
+                                    sold out
+                                </span>
+                        </div>
                     </div>
-                </div>
+                @endif
             </div>
             <div class="product_actions">
                 <button class="add_to_cart">THÊM VÀO GIỎ</button>
@@ -71,9 +73,12 @@
 
     // xử lý thêm vào giỏ hàng
     document.querySelector('.add_to_cart').addEventListener('click', function() {
-        const quantity = parseInt(qtyInput.value) || 1; // Giá trị mặc định là 1
+        const quantity = parseInt(qtyInput.value) || 0; // Giá trị mặc định là 1
         const productCode = '{{ $product->productCode }}'; // Lấy mã sản phẩm
-
+        if (quantity <= 0) {
+            alert('Vui lòng chọn số lượng lớn hơn 0!');
+            return;
+        }
         fetch('{{ route("cart.add") }}', {
             method: 'POST',
             headers: {

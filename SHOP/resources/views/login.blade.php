@@ -22,27 +22,72 @@
 
             <div class="header_menu">
                 <ul class="nav_menu">
-                    <li class="nav_item">
-                        <a href="">HÀNG MỚI VỀ</a>
-                    </li>
-                    <li class="nav_item has_submenu">
-                        <a href="">SẢN PHẦM
+                    <li class="nav_item has_submenu has_submenu_product">
+                        <a href="{{ route('lietke') }}">SẢN PHẦM
                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" x="0" y="0" viewBox="0 0 128 128"><g><path d="m64 88c-1.023 0-2.047-.391-2.828-1.172l-40-40c-1.563-1.563-1.563-4.094 0-5.656s4.094-1.563 5.656 0l37.172 37.172 37.172-37.172c1.563-1.563 4.094-1.563 5.656 0s1.563 4.094 0 5.656l-40 40c-.781.781-1.805 1.172-2.828 1.172z"></path></g></svg>
                         </a>
+                        <div class="base_product"></div>
+                        <div class="menu_list_warapper">
+                            <div class="container_wrapper">
+                                <div class="product_wrapper">
+                                    <div class="product_infor">
+                                        <img src="https://file.hstatic.net/200000000133/file/ao.jpg" alt="" class="product_img">
+                                        <span>Aó</span>
+                                    </div>
+
+                                    <div class="product_infor">
+                                        <img src="https://file.hstatic.net/200000000133/file/dam.jpg" alt="" class="product_img">
+                                        <span>Đầm</span>
+                                    </div>
+
+                                    <div class="product_infor">
+                                        <img src="https://file.hstatic.net/200000000133/file/chan_vay.jpg" alt="" class="product_img">
+                                        <span>Chân váy</span>
+                                    </div>
+
+                                    <div class="product_infor">
+                                        <img src="https://file.hstatic.net/200000000133/file/quan.jpg" alt="" class="product_img">
+                                        <span>Quần</span>
+                                    </div>
+
+                                    <div class="product_infor">
+                                        <img src="https://file.hstatic.net/200000000133/file/img_megamenu2_5_a5bce29661434ffdad3e4cbe7e5540ea.jpg" alt="" class="product_img">
+                                        <span>Jumpsuit</span>
+                                    </div>
+
+                                    <div class="product_infor">
+                                        <img src="https://file.hstatic.net/200000000133/file/ao_khaocs.jpg" alt="" class="product_img">
+                                        <span>Aó Khoác</span>
+                                    </div>
+
+                                    <div class="product_infor">
+                                        <img src="https://file.hstatic.net/200000000133/file/phu_kien.jpg" alt="" class="product_img">
+                                        <span>Phụ Kiện</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav_item">
-                        <a href="">BỘ SƯU TẬP</a>
+                        <a href="{{ route('products.byType', ['type' => 'ao']) }}">ÁO</a>
                     </li>
                     <li class="nav_item">
-                        <a href="">CASAUL</a>
+                        <a href="{{ route('products.byType', ['type' => 'dam']) }}">ĐẦM</a>
                     </li>
                     <li class="nav_item">
-                        <a href="">LADY ME</a>
+                        <a href="{{ route('products.byType', ['type' => 'chan-vay']) }}">CHÂN VÁY</a>
                     </li>
                     <li class="nav_item has_submenu">
-                        <a href="">SALE
-                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" x="0" y="0" viewBox="0 0 128 128"><g><path d="m64 88c-1.023 0-2.047-.391-2.828-1.172l-40-40c-1.563-1.563-1.563-4.094 0-5.656s4.094-1.563 5.656 0l37.172 37.172 37.172-37.172c1.563-1.563 4.094-1.563 5.656 0s1.563 4.094 0 5.656l-40 40c-.781.781-1.805 1.172-2.828 1.172z"></path></g></svg>
-                        </a>
+                        <a href="{{ route('products.byType', ['type' => 'quan']) }}">QUẦN</a>
+                    </li>
+                    <li class="nav_item has_submenu">
+                        <a href="{{ route('products.byType', ['type' => 'jumpsuit']) }}">JUMPSUIT</a>
+                    </li>
+                    <li class="nav_item has_submenu">
+                        <a href="{{ route('products.byType', ['type' => 'ao-khoac']) }}">ÁO KHOÁC</a>
+                    </li>
+                    <li class="nav_item has_submenu">
+                        <a href="{{ route('products.byType', ['type' => 'phu-kien']) }}">PHỤ KIỆN</a>
                     </li>
                 </ul>
             </div>
@@ -81,6 +126,13 @@
                     <a href="{{ route('register') }}">Đăng Ký</a>
                </h4>
             </div>
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    <script>
+                        alert("{{ session('error') }}")
+                    </script>
+                </div>
+            @endif
             <form action="{{ $type === 'customer' ? route('customer.login.submit') : route('login.submit') }}" method="post">
                  @csrf  {{-- THÊM DÒNG NÀY --}}
                 <input type="text" name="customerName" placeholder="Tên đăng nhập" class="input_sub" autocomplete="off">

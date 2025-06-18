@@ -43,6 +43,40 @@ class AuthController extends Controller
     {
         return view('register'); // file resources/views/register.blade.php
     }
+    public function register(Request $request)
+    {
+        $request->validate([
+            'customerName' => [
+                'required',
+                'regex:/^[\p{L}\s\'-]+$/u'
+            ],
+            'email' => 'required|email',
+            'password' => [
+                'required',
+                'min:8',
+                'regex:/[A-Z]/',      // chữ hoa
+                'regex:/[a-z]/',      // chữ thường
+                'regex:/[0-9]/',      // số
+                'regex:/[\W_]/'       // ký tự đặc biệt
+            ],
+            're_password' => 'required|same:password',
+            'date' => 'required|date',
+        ], [
+            'customerName.required' => 'Yêu cầu nhập tên',
+            'customerName.regex' => 'Chỉ cho phép chữ cái và khoảng trắng',
+            'email.required' => 'Yêu cầu nhập email',
+            'email.email' => 'Email không đúng định dạng',
+            'password.required' => 'Xin nhập mật khẩu',
+            'password.min' => 'Mật khẩu có ít nhất 8 ký tự',
+            'password.regex' => 'Mật khẩu phải có chữ hoa, chữ thường, số và ký tự đặc biệt',
+            're_password.required' => 'Vui lòng nhập lại mật khẩu',
+            're_password.same' => 'Mật khẩu không khớp',
+            'date.required' => 'Vui lòng nhập ngày sinh',
+            'date.date' => 'Ngày sinh không hợp lệ',
+        ]);
+
+        
+    }
 
     public function processRegister(Request $rquest){
         $customerName= $rquest->input('customerName');

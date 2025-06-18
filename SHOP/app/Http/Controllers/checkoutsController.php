@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\Province;
+use App\Models\Product;
 use App\Models\District;
 use App\Models\Wards;
 use Illuminate\Http\Request;
@@ -51,14 +52,29 @@ use function Laravel\Prompts\table;
             $cart = session()->get($cartKey, []);
 
             // 3. Insert từng sản phẩm vào orderdetails
-            foreach ($cart as $item) {
-                DB::table('orderdetails')->insert([
-                    'orderNumber'      => $orderId,
-                    'productCode'      => $item['productCode'],
-                    'quantityOrdered'  => $item['quantity'],
-                    'priceEach'        => $item['price'],
-                    'typeOrdered'      => isset($item['type']) ? $item['type'] : null, // mới thêm
-                ]);
+            DB::transaction(function () use ($cart, $orderId) {
+                foreach ($cart as $item) {
+                    // 1. Lấy sản phẩm và khóa dòng
+                    $product = Product::where('productCode', $item['productCode'])->lockForUpdate()->first();
+
+                    // 2. Kiểm tra tồn kho
+                    if ($product->qualityStock < $item['quantity']) {
+                        throw new \Exception('Sản phẩm ' . $product->productName . ' không đủ tồn kho!');
+                    }
+
+                    // 3. Trừ tồn kho
+                    $product->qualityStock -= $item['quantity'];
+                    $product->save();
+
+                    // 4. Lưu chi tiết đơn hàng (orderdetails)
+                    DB::table('orderdetails')->insert([
+                        'orderNumber'      => $orderId,
+                        'productCode'      => $item['productCode'],
+                        'quantityOrdered'  => $item['quantity'],
+                        'priceEach'        => $item['price'],
+                        'typeOrdered'      => $item['type'] ?? null,
+                    ]);
+                }
             }
             // 4. Tính tổng tiền đơn hàng
             $total = 0;

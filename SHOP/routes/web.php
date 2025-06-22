@@ -30,7 +30,7 @@ Route::get('/homeuser', function () {
 })->name('homeuser');
 
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-Route::post('/register', [AuthController::class, 'processRegister'])->name('register.submit');
+Route::post('/register', [AuthController::class, 'register'])->name('register.submit'); // xử lý logic phần đăng ký
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login'); //login user
 Route::post('/login', [AuthController::class, 'processLogin'])->name('login.submit');

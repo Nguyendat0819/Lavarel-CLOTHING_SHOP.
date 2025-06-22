@@ -75,15 +75,11 @@ class AuthController extends Controller
             'date.date' => 'Ngày sinh không hợp lệ',
         ]);
 
-        
-    }
-
-    public function processRegister(Request $rquest){
-        $customerName= $rquest->input('customerName');
-        $password = $rquest->input('password');
-        $email = $rquest->input('email');
-        $date = $rquest->input('date');
-        $gender = $rquest->input('gender');
+        $customerName= $request->input('customerName');
+        $password = $request->input('password');
+        $email = $request->input('email');
+        $date = $request->input('date');
+        $gender = $request->input('gender');
 
         // Kiểm tra xem tên đăng nhập đã tồn tại chưa
         $existingUser = DB::table('customer')->where('customerName', $customerName)->first();
@@ -102,5 +98,7 @@ class AuthController extends Controller
       
         return redirect()->route('login')->with('success', 'Đăng ký thành công, vui lòng đăng nhập');
     }
+
+   
 
 }

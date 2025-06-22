@@ -13,7 +13,7 @@
         <div class="header">
             <div class="header_list">
                 <div class="header_list_item">
-                    <a href="{{ route('admin') }}">Admin</a>
+                    <a href="{{ route('admin') }}">Thống kê doanh số</a>
                 </div>
                 <div class="header_list_item">
                     <a href="{{ route('AddProduct') }}">Thêm sản phẩm</a>

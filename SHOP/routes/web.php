@@ -30,8 +30,8 @@ Route::get('/homeuser', function () {
 })->name('homeuser');
 
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+// Route::post('/register', [AuthController::class, ' processRegister'])->name('register.submit');
 Route::post('/register', [AuthController::class, 'register'])->name('register.submit'); // xử lý logic phần đăng ký
-
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login'); //login user
 Route::post('/login', [AuthController::class, 'processLogin'])->name('login.submit');
 
@@ -51,9 +51,17 @@ Route::middleware(['auth:customer'])->group(function() {
 
 
 Route::get('/admin', function () {
-    return view('admin.admin'); //admin trong folder admin
-})->name('admin');
+    $customerCount = \App\Models\Customer::count(); // Example: Count all users
+    $totalSold = \App\Models\orderdetails::sum('quantityOrdered'); // Example: Sum of all sold products
+    $totalRevenue = \App\Models\orderdetails::sum('priceEach'); // Example: Sum of all order prices
 
+    return view('admin.admin', [
+        'customerCount' => $customerCount,
+        'totalSold' => $totalSold,
+        'totalRevenue' => $totalRevenue,
+    ]);
+})->name('admin');
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard'); 
 Route::get('/ManagerProduct',function () {
     return view('admin.ManagerProduct');
 })->name('ManagerProduct');

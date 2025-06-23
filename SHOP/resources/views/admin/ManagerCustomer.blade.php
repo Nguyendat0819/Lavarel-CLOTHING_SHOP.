@@ -24,7 +24,7 @@
                     <td>{{ $customer->customerNumber }}</td>
                     <td>{{ $customer->customerName }}</td>
                     <td>{{ $customer->email }}</td>
-                    <td>{{ $customer->address->phone ?? '' }}</td>
+                    <td>{{ $customer->address->phone ?? ''  }}</td>
                     <td>{{ $customer->password }}</td>
                     <td>{{ $customer->gender }}</td>
                     <td>{{ $customer->date }}</td>
